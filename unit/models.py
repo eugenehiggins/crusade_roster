@@ -4,8 +4,6 @@ from django.db import models
 # class Battle(models.Model):
 #     name = models.CharField(max_length=200, null=True, help_text='Optional; e.g. "Battle of Vortrex Divide')
 #     enemy = models.CharField(max_length=200, null=True)
-class Weapon(models.Model):
-    name = models.CharField(max_length=100,)
 
 
 class Unit(models.Model):
@@ -20,10 +18,47 @@ class Unit(models.Model):
     marked_for_greatness = models.PositiveSmallIntegerField(
         help_text="Number of times marked for greatness", default=0
     )
-    misc_xp_gain_loss = models.PositiveSmallIntegerField(
+    misc_xp_gain_loss = models.PositiveSmallIntegerField(default=0,
         help_text="Miscellaneous XP gain or losses"
     )
+
     def __str__(self):
         return self.name
 
 
+class Weapon(models.Model):
+    unit = models.ForeignKey(
+        Unit,
+        related_name="weapons",
+        verbose_name="unit",
+        on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, default=0)
+    range = models.CharField(max_length=10, default=0)
+    type = models.CharField(max_length=20, default=0)
+    strength = models.CharField(max_length=5, verbose_name="S")
+    armor_piercing = models.CharField(max_length=2, verbose_name="AP")
+    damage = models.CharField(max_length=10, verbose_name="D")
+    description = models.CharField(max_length=255, help_text="e.g. blast, poison weapon 4+")
+
+    class Meta:
+        verbose_name = "Weapon"
+        verbose_name_plural = "Weapons"
+        ordering = ("unit", "name")
+
+    def __str__(self):
+        return self.name
+
+
+class Agenda(models.Model):
+    name = models.CharField(max_length=100)
+    xp = models.PositiveSmallIntegerField()
+    units = models.ManyToManyField(
+        Unit,
+        related_name="agendas",
+    )
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
