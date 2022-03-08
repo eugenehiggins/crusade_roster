@@ -11,14 +11,14 @@
 - test with `python manage.py runserver`
   - look for errors in the terminal
   - if working looks like:
-```
-Watching for file changes with StatReloader
-System check identified no issues (0 silenced).
-March 08, 2022 - 17:12:03
-Django version 4.0.2, using settings 'crusade_roster.settings'
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
-```
+  ```zsh
+  Watching for file changes with StatReloader
+  System check identified no issues (0 silenced).
+  March 08, 2022 - 17:12:03
+  Django version 4.0.2, using settings 'crusade_roster.settings'
+  Starting development server at http://127.0.0.1:8000/
+  Quit the server with CONTROL-C.
+  ```
 - ~~create superuser~~ this is done
   - user and password are `admin`
   - ~~`python manage.py createsuperuser`~~
