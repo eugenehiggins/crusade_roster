@@ -6,12 +6,29 @@ from django.db import models
 #     enemy = models.CharField(max_length=200, null=True)
 
 
+# class Agenda(models.Model):
+#     name = models.CharField(max_length=100)
+#     xp = models.PositiveSmallIntegerField()
+#     # units = models.ManyToManyField(
+#     #     Unit,
+#     #     related_name="agendas",
+#     # )
+#     parent = models.ForeignKey('self', blank=True, null=True, related_name="agendas")
+# 
+#     class Meta:
+#         ordering = ['name']
+# 
+#     def __str__(self):
+#         return self.name
+
+
 class Unit(models.Model):
     name = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=100, blank=True, help_text='short description i.e. "5 intercessors')
-    power = models. PositiveSmallIntegerField(default=0)
-    points = models. PositiveSmallIntegerField(default=0)
+    power = models.PositiveSmallIntegerField(default=0)
+    points = models.PositiveSmallIntegerField(default=0)
     crusade_points = models. PositiveSmallIntegerField(default=0)
+    xp = models.PositiveSmallIntegerField(default=0)
     battles_fought = models. PositiveSmallIntegerField(default=0)
     battles_survived = models. PositiveSmallIntegerField(default=0)
     # battles = models.PositiveSmallIntegerField(default=0)
@@ -45,20 +62,28 @@ class Weapon(models.Model):
         verbose_name_plural = "Weapons"
         ordering = ("unit", "name")
 
+
     def __str__(self):
         return self.name
 
 
-class Agenda(models.Model):
-    name = models.CharField(max_length=100)
-    xp = models.PositiveSmallIntegerField()
-    units = models.ManyToManyField(
+class Profile(models.Model):
+    unit = models.ForeignKey(
         Unit,
-        related_name="agendas",
+        related_name="profiles",
+        verbose_name="unit",
+        on_delete=models.CASCADE
     )
-
-    class Meta:
-        ordering = ['name']
+    name = models.CharField(max_length=100, default="", null=True, blank=True)
+    movement = models.PositiveSmallIntegerField(default=0, verbose_name="M", null=True, blank=True)
+    weapon_skill = models.PositiveSmallIntegerField(default=0, verbose_name="WS", null=True, blank=True)
+    ballistic_skill = models.PositiveSmallIntegerField(default=0, verbose_name="BS", null=True, blank=True)
+    strength = models.PositiveSmallIntegerField(default=0, verbose_name="S", null=True, blank=True)
+    toughness = models.PositiveSmallIntegerField(default=0, verbose_name="T", null=True, blank=True)
+    wounds = models.PositiveSmallIntegerField(default=0, verbose_name="W", null=True, blank=True)
+    attacks = models.PositiveSmallIntegerField(default=0, verbose_name="A", null=True, blank=True)
+    leadership = models.PositiveSmallIntegerField(default=0, verbose_name="Ld", null=True, blank=True)
+    sv = models.PositiveSmallIntegerField(default=0, verbose_name="Sv", null=True, blank=True)
 
     def __str__(self):
         return self.name

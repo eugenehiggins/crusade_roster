@@ -1,5 +1,9 @@
 # crusade roster
 
+## Installation
+- Install python: https://docs.djangoproject.com/en/4.0/intro/install/
+- Install Django
+
 ## TODO: features
 
 ### battle
