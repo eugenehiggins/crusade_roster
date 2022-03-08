@@ -1,0 +1,17 @@
+input.profile-text-input {
+    width: 10rem;
+}
+
+input.profile-number-input {
+    width: 100%;
+}
+input.weapon-text-input {
+    width: 10rem;
+}
+
+input.weapon-number-input {
+    width: 100%;
+}
+[class^="id_weapons"] {
+    
+}
