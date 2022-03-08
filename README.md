@@ -9,13 +9,25 @@
   - `pip install -r requirements.txt`
   - `requirements.txt` will likely change
 - test with `python manage.py runserver`
+  - look for errors in the terminal
+  - if working looks like:
+```
+Watching for file changes with StatReloader
+System check identified no issues (0 silenced).
+March 08, 2022 - 17:12:03
+Django version 4.0.2, using settings 'crusade_roster.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+```
 - ~~create superuser~~ this is done
   - user and password are `admin`
   - ~~`python manage.py createsuperuser`~~
   - ~~follow prompts, you can skip everything except username and password~~
   - ~~password can be weak, but it will warn you~~
-- there is no template for the home page yet so it will show an error
-- `127.0.0.1/admin`
+- go to http://127.0.0.1:8000/
+  - there is no template for the home page yet so it will show an error
+  - there might not ever be a template for the homepage
+- go to `127.0.0.1:8000/admin`
 
 ## TODO: features
 
