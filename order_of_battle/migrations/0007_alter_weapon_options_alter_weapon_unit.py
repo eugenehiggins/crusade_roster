@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='weapon',
             name='order_of_battle',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='weapons', to='order_of_battle.order_of_battle', verbose_name='order_of_battle'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='weapons', to='order_of_battle.unit', verbose_name='order_of_battle'),
         ),
     ]

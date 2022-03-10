@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('attacks', models.PositiveSmallIntegerField(default=0, verbose_name='A')),
                 ('leadership', models.PositiveSmallIntegerField(default=0, verbose_name='Ld')),
                 ('save', models.PositiveSmallIntegerField(default=0, verbose_name='Sv')),
-                ('order_of_battle', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='profiles', to='order_of_battle.order_of_battle', verbose_name='order_of_battle')),
+                ('order_of_battle', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='profiles', to='order_of_battle.unit', verbose_name='order_of_battle')),
             ],
         ),
     ]

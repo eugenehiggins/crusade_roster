@@ -11,12 +11,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='battles',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='description',
             field=models.CharField(blank=True, help_text='short description i.e. "5 intercessors', max_length=100),
         ),

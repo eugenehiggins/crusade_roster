@@ -1,28 +1,32 @@
 from django.db import models
 
 
-# class Battle(models.Model):
-#     name = models.CharField(max_length=200, null=True, help_text='Optional; e.g. "Battle of Vortrex Divide')
-#     enemy = models.CharField(max_length=200, null=True)
+class Army(models.Model):
+    name = models.CharField(max_length=100, null=False)
+    general = models.CharField(max_length=100, null=True, blank=True, help_text="your name")
+    battles = models.PositiveSmallIntegerField(default=0)
+    battles_won = models.PositiveSmallIntegerField(default=0)
+    custom_points = models.PositiveSmallIntegerField(default=0)
+    custom_points_name = models.CharField(max_length=100, blank=True, help_text='e.g. virulence points')
+    supply_limit = models.PositiveSmallIntegerField(default=0)
+    supply_used = models.PositiveSmallIntegerField(default=0)
+    total_rp = models.PositiveSmallIntegerField(default=0, verbose_name='Total requisition')
+    spent_rp = models.PositiveSmallIntegerField(default=0, verbose_name='Spent requisition')
+    crusade_faction = models.CharField(max_length=100, null=True, blank=True)
 
-
-# class Agenda(models.Model):
-#     name = models.CharField(max_length=100)
-#     xp = models.PositiveSmallIntegerField()
-#     # units = models.ManyToManyField(
-#     #     Unit,
-#     #     related_name="agendas",
-#     # )
-#     parent = models.ForeignKey('self', blank=True, null=True, related_name="agendas")
-# 
-#     class Meta:
-#         ordering = ['name']
-# 
-#     def __str__(self):
-#         return self.name
-
-
+    class Meta:
+        verbose_name_plural = "Armies"
+    
+    def __str__(self):
+        return self.name
+    
+    
 class Unit(models.Model):
+    army = models.ForeignKey(
+        Army,
+        related_name="unit",
+        on_delete=models.CASCADE
+    )
     name = models.CharField(max_length=100, null=False)
     description = models.CharField(max_length=100, blank=True, help_text='short description i.e. "5 intercessors')
     power = models.PositiveSmallIntegerField(default=0)
@@ -53,7 +57,7 @@ class Weapon(models.Model):
     unit = models.ForeignKey(
         Unit,
         related_name="weapons",
-        verbose_name="order_of_battle",
+        verbose_name="unit",
         on_delete=models.CASCADE)
     name = models.CharField(max_length=100, default=0)
     range = models.CharField(max_length=10, default=0)
@@ -66,7 +70,7 @@ class Weapon(models.Model):
     class Meta:
         verbose_name = "Weapon"
         verbose_name_plural = "Weapons"
-        ordering = ("order_of_battle", "name")
+        ordering = ("unit", "name")
 
 
     def __str__(self):
@@ -77,7 +81,7 @@ class Profile(models.Model):
     unit = models.ForeignKey(
         Unit,
         related_name="profiles",
-        verbose_name="order_of_battle",
+        verbose_name="unit",
         on_delete=models.CASCADE
     )
     name = models.CharField(max_length=100, default="", null=True, blank=True)
@@ -90,6 +94,15 @@ class Profile(models.Model):
     attacks = models.PositiveSmallIntegerField(default=0, verbose_name="A", null=True, blank=True)
     leadership = models.PositiveSmallIntegerField(default=0, verbose_name="Ld", null=True, blank=True)
     sv = models.PositiveSmallIntegerField(default=0, verbose_name="Sv", null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Agenda(models.Model):
+    name = models.CharField(max_length=100, default="", null=True, blank=True)
+    points_per_tally = models.PositiveSmallIntegerField(default=1, verbose_name='points gained per tally')
+    is_xp = models.BooleanField(default=True, help_text="Select if this is for xp; leave blank if for custom points")
 
     def __str__(self):
         return self.name

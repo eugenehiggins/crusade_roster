@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='battles',
             field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='order_of_battle.battle'),
             preserve_default=False,

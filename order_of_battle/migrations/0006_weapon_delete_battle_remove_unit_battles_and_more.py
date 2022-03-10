@@ -28,22 +28,22 @@ class Migration(migrations.Migration):
             name='Battle',
         ),
         migrations.RemoveField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='battles',
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='marked_for_greatness',
             field=models.PositiveSmallIntegerField(default=0, help_text='Number of times marked for greatness'),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='misc_xp_gain_loss',
             field=models.PositiveSmallIntegerField(default=0, help_text='Miscellaneous XP gain or losses'),
         ),
         migrations.AddField(
             model_name='weapon',
             name='order_of_battle',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='order_of_battle.order_of_battle'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='order_of_battle.unit'),
         ),
     ]

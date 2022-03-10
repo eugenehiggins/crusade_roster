@@ -11,32 +11,32 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='battle_honours',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='battle_scars',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='equipment',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='notes',
             field=models.TextField(blank=True, max_length=500, null=True),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='relic',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='warlord_trait',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),

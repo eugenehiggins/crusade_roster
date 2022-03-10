@@ -11,27 +11,27 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='battles_fought',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='battles_survived',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='crusade_points',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='points',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='power',
             field=models.PositiveSmallIntegerField(default=0),
         ),

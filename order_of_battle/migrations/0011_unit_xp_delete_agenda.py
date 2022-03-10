@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='order_of_battle',
+            model_name='unit',
             name='xp',
             field=models.PositiveSmallIntegerField(default=0),
         ),
