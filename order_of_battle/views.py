@@ -2,7 +2,10 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status
+from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
 
 from order_of_battle.models import Unit, Army
 from order_of_battle.serializers import ArmySerializer
@@ -22,8 +25,8 @@ def detail(request, id):
     return render(request, 'unit/detail.html', {'order_of_battle': unit})
 
 
-@csrf_exempt
-def army_list(request):
+@api_view(['GET', 'POST'])
+def army_list(request, format=None):
     """
     List all armies, or create a new one
     """
@@ -31,19 +34,18 @@ def army_list(request):
     if request.method == 'GET':
         armies = Army.objects.all()
         serializer = ArmySerializer(armies, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return Response(serializer.data)
 
     elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = ArmySerializer(data=data)
+        serializer = ArmySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status = 201)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@csrf_exempt
-def army_detail(request, pk):
+@api_view(['GET', 'PUT', 'DELETE'])
+def army_detail(request, pk, format=None):
     """
     Retrieve, update or delete an army
     :param request:
@@ -54,20 +56,19 @@ def army_detail(request, pk):
     try:
         army = Army.objects.get(pk=pk)
     except Army.DoesNotExist:
-        return HttpResponse(status=404)
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         serializer = ArmySerializer(army)
-        return JsonResponse(serializer.data)
+        return Response(serializer.data)
 
     elif request.method == 'PUT':
-        data = JSONParser().parse(request)
-        serializer = ArmySerializer(army, data=data)
+        serializer = ArmySerializer(army, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
         army.delete()
-        return HttpResponse(status=204)
+        return Response(status=status.HTTP_204_NO_CONTENT)
