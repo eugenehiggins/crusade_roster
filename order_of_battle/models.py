@@ -2,9 +2,10 @@ from django.db import models
 
 
 class Army(models.Model):
+    owner = models.ForeignKey('auth.User', related_name='army', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=False)
     general = models.CharField(max_length=100, null=True, blank=True, help_text="your name")
-    battles = models.PositiveSmallIntegerField(default=0)
+    battles = models.PositiveSmallIntegerField(default=0, null=True, blank=True,)
     battles_won = models.PositiveSmallIntegerField(default=0)
     custom_points = models.PositiveSmallIntegerField(default=0)
     custom_points_name = models.CharField(max_length=100, blank=True, help_text='e.g. virulence points')
@@ -19,7 +20,7 @@ class Army(models.Model):
     
     def __str__(self):
         return self.name
-    
+
     
 class Unit(models.Model):
     army = models.ForeignKey(
