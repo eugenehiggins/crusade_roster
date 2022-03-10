@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
+from rest_framework import viewsets
 
-from order_of_battle.models import Unit
+from order_of_battle.models import Unit, Army
+from order_of_battle.serializers import ArmySerializer
 
 
 def index(request):
@@ -18,3 +20,7 @@ def detail(request, id):
     unit = get_object_or_404(Unit, pk=id)
     return render(request, 'unit/detail.html', {'order_of_battle': unit})
 
+
+class ArmiesViewSet(viewsets.ModelViewSet):
+    queryset = Army.objects.all()
+    serializer_class = ArmySerializer
