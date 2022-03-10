@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.forms import TextInput, NumberInput
 from django.db import models
-from unit.models import Unit, Weapon, Profile
+from order_of_battle.models import Unit, Weapon, Profile
 
 
 class WeaponsInline(admin.TabularInline):

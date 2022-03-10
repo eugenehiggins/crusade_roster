@@ -53,7 +53,7 @@ class Weapon(models.Model):
     unit = models.ForeignKey(
         Unit,
         related_name="weapons",
-        verbose_name="unit",
+        verbose_name="order_of_battle",
         on_delete=models.CASCADE)
     name = models.CharField(max_length=100, default=0)
     range = models.CharField(max_length=10, default=0)
@@ -66,7 +66,7 @@ class Weapon(models.Model):
     class Meta:
         verbose_name = "Weapon"
         verbose_name_plural = "Weapons"
-        ordering = ("unit", "name")
+        ordering = ("order_of_battle", "name")
 
 
     def __str__(self):
@@ -77,7 +77,7 @@ class Profile(models.Model):
     unit = models.ForeignKey(
         Unit,
         related_name="profiles",
-        verbose_name="unit",
+        verbose_name="order_of_battle",
         on_delete=models.CASCADE
     )
     name = models.CharField(max_length=100, default="", null=True, blank=True)

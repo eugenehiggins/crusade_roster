@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0013_alter_profile_weapon_skill'),
+        ('order_of_battle', '0013_alter_profile_weapon_skill'),
     ]
 
     operations = [

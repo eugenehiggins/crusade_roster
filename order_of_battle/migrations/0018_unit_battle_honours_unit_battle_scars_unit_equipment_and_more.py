@@ -6,37 +6,37 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0017_alter_profile_name'),
+        ('order_of_battle', '0017_alter_profile_name'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='battle_honours',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='battle_scars',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='equipment',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='notes',
             field=models.TextField(blank=True, max_length=500, null=True),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='relic',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='warlord_trait',
             field=models.CharField(blank=True, max_length=300, null=True),
         ),

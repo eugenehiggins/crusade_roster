@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0004_alter_unit_battles'),
+        ('order_of_battle', '0004_alter_unit_battles'),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='battles',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AlterField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='description',
             field=models.CharField(blank=True, help_text='short description i.e. "5 intercessors', max_length=100),
         ),

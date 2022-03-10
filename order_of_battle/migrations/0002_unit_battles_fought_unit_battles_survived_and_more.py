@@ -6,32 +6,32 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0001_initial'),
+        ('order_of_battle', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='battles_fought',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='battles_survived',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='crusade_points',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='points',
             field=models.PositiveSmallIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='power',
             field=models.PositiveSmallIntegerField(default=0),
         ),

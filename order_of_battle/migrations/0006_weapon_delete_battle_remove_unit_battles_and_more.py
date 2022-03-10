@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0005_alter_unit_battles_alter_unit_description'),
+        ('order_of_battle', '0005_alter_unit_battles_alter_unit_description'),
     ]
 
     operations = [
@@ -28,22 +28,22 @@ class Migration(migrations.Migration):
             name='Battle',
         ),
         migrations.RemoveField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='battles',
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='marked_for_greatness',
             field=models.PositiveSmallIntegerField(default=0, help_text='Number of times marked for greatness'),
         ),
         migrations.AddField(
-            model_name='unit',
+            model_name='order_of_battle',
             name='misc_xp_gain_loss',
             field=models.PositiveSmallIntegerField(default=0, help_text='Miscellaneous XP gain or losses'),
         ),
         migrations.AddField(
             model_name='weapon',
-            name='unit',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='unit.unit'),
+            name='order_of_battle',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='order_of_battle.order_of_battle'),
         ),
     ]
