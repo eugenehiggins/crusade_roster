@@ -27,10 +27,10 @@ class Unit(models.Model):
     description = models.CharField(max_length=100, blank=True, help_text='short description i.e. "5 intercessors')
     power = models.PositiveSmallIntegerField(default=0)
     points = models.PositiveSmallIntegerField(default=0)
-    crusade_points = models. PositiveSmallIntegerField(default=0)
+    crusade_points = models.PositiveSmallIntegerField(default=0)
     xp = models.PositiveSmallIntegerField(default=0)
-    battles_fought = models. PositiveSmallIntegerField(default=0)
-    battles_survived = models. PositiveSmallIntegerField(default=0)
+    battles_fought = models.PositiveSmallIntegerField(default=0)
+    battles_survived = models.PositiveSmallIntegerField(default=0)
     # battles = models.PositiveSmallIntegerField(default=0)
     marked_for_greatness = models.PositiveSmallIntegerField(
         help_text="Number of times marked for greatness", default=0
@@ -38,6 +38,12 @@ class Unit(models.Model):
     misc_xp_gain_loss = models.PositiveSmallIntegerField(default=0,
         help_text="Miscellaneous XP gain or losses"
     )
+    battle_honours = models.CharField(max_length=300, blank=True, null=True)
+    battle_scars = models.CharField(max_length=300, blank=True, null=True)
+    equipment = models.CharField(max_length=300, blank=True, null=True)
+    warlord_trait = models.CharField(max_length=300, blank=True, null=True)
+    relic = models.CharField(max_length=300, blank=True, null=True)
+    notes = models.TextField(max_length=500, blank=True, null=True)
 
     def __str__(self):
         return self.name
