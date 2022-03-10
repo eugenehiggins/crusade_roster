@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'unit.apps.UnitConfig',
+    'django_rename_app',
+
+    'order_of_battle.apps.UnitConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,7 +124,7 @@ print(PROJECT_DIR)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'unit/static/'),
+    os.path.join(BASE_DIR, 'order_of_battle/static/'),
     # os.path.join(PROJECT_DIR, 'static/'),
 ]
 

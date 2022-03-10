@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0011_unit_xp_delete_agenda'),
+        ('order_of_battle', '0011_unit_xp_delete_agenda'),
     ]
 
     operations = [
@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('attacks', models.PositiveSmallIntegerField(default=0, verbose_name='A')),
                 ('leadership', models.PositiveSmallIntegerField(default=0, verbose_name='Ld')),
                 ('save', models.PositiveSmallIntegerField(default=0, verbose_name='Sv')),
-                ('unit', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='profiles', to='unit.unit', verbose_name='unit')),
+                ('order_of_battle', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='profiles', to='order_of_battle.unit', verbose_name='order_of_battle')),
             ],
         ),
     ]

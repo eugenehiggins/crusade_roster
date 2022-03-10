@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0001_initial'),
+        ('order_of_battle', '0001_initial'),
     ]
 
     operations = [

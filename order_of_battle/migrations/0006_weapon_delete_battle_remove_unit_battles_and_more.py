@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0005_alter_unit_battles_alter_unit_description'),
+        ('order_of_battle', '0005_alter_unit_battles_alter_unit_description'),
     ]
 
     operations = [
@@ -43,7 +43,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='weapon',
-            name='unit',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='unit.unit'),
+            name='order_of_battle',
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='order_of_battle.unit'),
         ),
     ]

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0008_agenda'),
+        ('order_of_battle', '0008_agenda'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='agenda',
-            name='unit',
-            field=models.ManyToManyField(related_name='agendas', to='unit.Unit'),
+            name='order_of_battle',
+            field=models.ManyToManyField(related_name='agendas', to='order_of_battle.Unit'),
         ),
     ]

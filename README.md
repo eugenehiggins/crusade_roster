@@ -19,11 +19,11 @@
   Starting development server at http://127.0.0.1:8000/
   Quit the server with CONTROL-C.
   ```
-- ~~create superuser~~ this is done
-  - user and password are `admin`
-  - ~~`python manage.py createsuperuser`~~
-  - ~~follow prompts, you can skip everything except username and password~~
-  - ~~password can be weak, but it will warn you~~
+- create superuser: not sure if this is necessary for cloning. If so:
+  - `python manage.py createsuperuser`~~
+  - follow prompts, you can skip everything except username and password~~
+  - user and password are e.g. `admin`
+  - password can be weak, but it will warn you~~
 - go to http://127.0.0.1:8000/
   - there is no template for the home page yet so it will show an error
   - there might not ever be a template for the homepage

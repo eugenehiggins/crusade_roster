@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('unit', '0010_rename_unit_agenda_units'),
+        ('order_of_battle', '0010_rename_unit_agenda_units'),
     ]
 
     operations = [
