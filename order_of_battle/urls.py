@@ -12,8 +12,8 @@ app_name = 'armies'
 urlpatterns = [
     # path('', views.index, name='index'),
     # path('<int:id>/', views.detail, name='detail'),
-    path('', views.army_list),
-    path('<int:pk>/', views.army_detail),
+    path('', views.ArmyList.as_view()),
+    path('<int:pk>/', views.ArmyDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
