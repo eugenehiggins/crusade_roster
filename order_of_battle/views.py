@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.template import loader
-from rest_framework import status
+from rest_framework import status, mixins, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -23,25 +23,26 @@ def detail(request, id):
     return render(request, 'unit/detail.html', {'order_of_battle': unit})
 
 
-class ArmyList(APIView):
+class ArmyList(mixins.ListModelMixin,
+               mixins.CreateModelMixin,
+               generics.ListCreateAPIView):
     """
     List all armies, or create a new one
     """
+    queryset = Army.objects.all()
+    serializer_class = ArmySerializer
 
-    def get(self, request, format=None):
-        armies = Army.objects.all()
-        serializer = ArmySerializer(armies, many=True)
-        return Response(serializer.data)
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
-    def post(self, request, format=None):
-        serializer = ArmySerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status = status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 
-class ArmyDetail(APIView):
+class ArmyDetail(mixins.RetrieveModelMixin,
+                 mixins.UpdateModelMixin,
+                 mixins.DestroyModelMixin,
+                 generics.GenericAPIView):
     """
     Retrieve, update or delete an army
     :param request:
@@ -49,26 +50,16 @@ class ArmyDetail(APIView):
     :return:
     """
 
-    def get_object(self, pk):
-        try:
-            return Army.objects.get(pk=pk)
-        except Army.DoesNotExist:
-            raise Http404
+    queryset = Army.objects.all()
+    serializer_class = ArmySerializer
 
-    def get(self, request, pk, format=None):
-        army = self.get_object(pk)
-        serializer = ArmySerializer(army)
-        return Response(serializer.data)
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
 
-    def put(self, request, pk, format=None):
-        army = self.get_object(pk)
-        serializer = ArmySerializer(army, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def put(self, request, pk, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
 
-    def delete(self, request, pk, format=None):
-        army = self.get_object(pk)
-        army.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request, pk, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
