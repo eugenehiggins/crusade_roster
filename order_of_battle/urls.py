@@ -12,8 +12,11 @@ app_name = 'armies'
 urlpatterns = [
     # path('', views.index, name='index'),
     # path('<int:id>/', views.detail, name='detail'),
-    path('', views.ArmyList.as_view()),
+    # path('', views.ArmyList.as_view()),
+    path('', views.api_root),
     path('<int:pk>/', views.ArmyDetail.as_view()),
+    path('users/', views.UserList.as_view()),
+    path('users/<int:pk>', views.UserDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

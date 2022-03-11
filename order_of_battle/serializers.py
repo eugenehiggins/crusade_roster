@@ -5,9 +5,11 @@ from order_of_battle.models import Army
 
 
 class ArmySerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
     class Meta:
         model = Army
-        fields = ['id', 'name', 'general', 'battles']
+        fields = ['id', 'owner', 'name', 'general', 'battles']
 
 
 class UserSerializer(serializers.ModelSerializer):
