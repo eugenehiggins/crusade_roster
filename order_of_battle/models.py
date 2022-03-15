@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Army(models.Model):
-    owner = models.ForeignKey('auth.User', related_name='army', on_delete=models.CASCADE)
+    owner = models.ForeignKey('auth.User', related_name='armies', on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=False)
     general = models.CharField(max_length=100, null=True, blank=True, help_text="your name")
     battles = models.PositiveSmallIntegerField(default=0, null=True, blank=True,)

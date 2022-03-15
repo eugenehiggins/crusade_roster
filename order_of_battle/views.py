@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 # from django.shortcuts import render, get_object_or_404
 # from django.template import loader
-from rest_framework import generics, permissions
+from rest_framework import permissions, viewsets, renderers
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 
-from order_of_battle.models import Unit, Army
+from order_of_battle.models import Army
 from order_of_battle.permissions import IsOwnerOrReadOnly
 from order_of_battle.serializers import ArmySerializer, UserSerializer
 
@@ -25,10 +25,11 @@ from order_of_battle.serializers import ArmySerializer, UserSerializer
 #     return render(request, 'unit/detail.html', {'order_of_battle': unit})
 
 
-class ArmyList(generics.ListCreateAPIView):
+class ArmyViewSet(viewsets.ModelViewSet):
     """
-    List all armies, or create a new one
+    This viewset automatically provides `list`, `create`, `retrieve`, `update`, and `destroy` actions.
     """
+
     queryset = Army.objects.all()
     serializer_class = ArmySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
@@ -37,25 +38,10 @@ class ArmyList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-class ArmyDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Retrieve, update or delete an army
-    :param request:
-    :param pk:
-    :return:
+    This viewset automatically provides `list` and `retrieve` actions
     """
-
-    queryset = Army.objects.all()
-    serializer_class = ArmySerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-
-class UserList(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

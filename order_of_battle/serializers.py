@@ -13,7 +13,8 @@ class ArmySerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    users = serializers.HyperlinkedRelatedField(many=True, view_name='army-detail', read_only=True)
+    armies = serializers.HyperlinkedRelatedField(
+        many=True, view_name='army-detail', read_only=True)
 
     class Meta:
         model = User
