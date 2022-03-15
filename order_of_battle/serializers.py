@@ -4,17 +4,17 @@ from rest_framework import serializers
 from order_of_battle.models import Army
 
 
-class ArmySerializer(serializers.ModelSerializer):
+class ArmySerializer(serializers.HyperlinkedModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Army
-        fields = ['id', 'owner', 'name', 'general', 'battles']
+        fields = ['url', 'id', 'owner', 'name', 'general', 'battles']
 
 
-class UserSerializer(serializers.ModelSerializer):
-    armies = serializers.PrimaryKeyRelatedField(many=True, queryset=Army.objects.all())
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    users = serializers.HyperlinkedRelatedField(many=True, view_name='army-detail', read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'snippets']
+        fields = ['url', 'id', 'username', 'armies']
