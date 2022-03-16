@@ -1,7 +1,7 @@
 {% if unit_list %}
     <ul>
     {% for unit in unit_list %}
-        <li><a href="{% url 'units:detail' unit.id %}">{{ unit.name }}</a></li>
+        <li><a href="{% url 'armies:detail' unit.id %}">{{ unit.name }}</a></li>
     {% endfor %}
 
     </ul>

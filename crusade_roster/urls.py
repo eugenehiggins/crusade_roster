@@ -17,6 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('units/', include('order_of_battle.urls')),
+    path('orders_of_battle/', include('order_of_battle.urls')),
     path('admin/', admin.site.urls),
+]
+
+urlpatterns += [
+    path('api-auth/', include('rest_framework.urls'))
 ]
