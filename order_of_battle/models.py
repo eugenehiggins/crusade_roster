@@ -25,7 +25,7 @@ class Army(models.Model):
 class Unit(models.Model):
     army = models.ForeignKey(
         Army,
-        related_name="unit",
+        related_name="units",
         on_delete=models.CASCADE
     )
     name = models.CharField(max_length=100, null=False)
@@ -51,7 +51,7 @@ class Unit(models.Model):
     notes = models.TextField(max_length=500, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return '%d: %s' % (self.id, self.name)
 
 
 class Weapon(models.Model):
